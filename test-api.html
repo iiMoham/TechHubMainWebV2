@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Sheets API Test</title>
+</head>
+<body>
+    <h1>Google Sheets API Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        // Test function to check if we can access your Google Sheets
+        async function testGoogleSheetsAccess() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<p>Testing Google Sheets access...</p>';
+            
+            const sheets = {
+                'fake-or-real': '1vnFddSk3KYrWUX5j5Tuzj2CDHM4vdTNy9X6WcaTefRg',
+                'cybertrace': '1IcDLEPd_5SRl5E6rDNfrj5XwX1ntIXJB55tLwxirsZA',
+                'countdown': '19X_N1nNjI1dfpPxZCJoge_RiQ6KRrAsatRIwjJY_xBo',
+                'guess-timeline': '1X97YkW6zTUAnNbYHYwP1RKYxarM510s0u_QFV3i42L8'
+            };
+            
+            for (const [name, sheetId] of Object.entries(sheets)) {
+                try {
+                    // Try to access without API key first (public sheets)
+                    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1!A1:Z10`;
+                    const response = await fetch(url);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        results.innerHTML += `<p><strong>${name}:</strong> ✅ Accessible - Found ${data.values?.length || 0} rows</p>`;
+                        console.log(`${name} data:`, data.values);
+                    } else {
+                        results.innerHTML += `<p><strong>${name}:</strong> ❌ Error ${response.status} - ${response.statusText}</p>`;
+                    }
+                } catch (error) {
+                    results.innerHTML += `<p><strong>${name}:</strong> ❌ Error - ${error.message}</p>`;
+                }
+            }
+        }
+        
+        // Run test when page loads
+        testGoogleSheetsAccess();
+    </script>
+</body>
+</html>

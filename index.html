@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Hub</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Animated background grid -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <img src="techhublogo.png" alt="TechhubLogo" class="nav-logo">
+      <div class="nav-links">
+        <a href="#games" class="nav-link">Games</a>
+        <a href="#analytics" class="nav-link">Analytics</a>
+      </div>
+      <img src="unilogo.png" alt="FCIT KAU" class="nav-logo">
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-badge">
+      <i class="fa-solid fa-gamepad"></i>
+      <span>5 Interactive Games</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="hero-gradient">Tech Hub</span>
+    </h1>
+    <p class="hero-subtitle">Test your skills with cybersecurity challenges, AI battles, and time-based puzzles.</p>
+    <div class="typing-wrapper">
+      <span class="typing-text text"></span>
+      <span class="typing-cursor">|</span>
+    </div>
+  </section>
+
+  <!-- GAMES SECTION -->
+  <section id="games" class="section">
+    <div class="section-header reveal-up">
+      <span class="section-tag"><i class="fa-solid fa-fire"></i> Choose Your Challenge</span>
+      <h2 class="section-title">Games</h2>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Game 1 -->
+      <a href="#" class="game-card reveal-up" data-game="human-vs-ai" style="--delay: 0">
+        <div class="card-glow"></div>
+        <div class="card-icon">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="card-info">
+          <h3>Human VS AI</h3>
+          <p>Can you outsmart artificial intelligence?</p>
+        </div>
+        <div class="card-arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+        <span class="card-badge">Coming Soon</span>
+      </a>
+
+      <!-- Game 2 -->
+      <a href="https://bayanhattari.github.io/RealOrFakeEmail/" target="_blank" class="game-card reveal-up" data-game="fake-or-real" style="--delay: 1">
+        <div class="card-glow"></div>
+        <div class="card-icon">
+          <i class="fa-solid fa-envelope-open-text"></i>
+        </div>
+        <div class="card-info">
+          <h3>Fake OR Real</h3>
+          <p>Detect phishing emails before it's too late</p>
+        </div>
+        <div class="card-arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <!-- Game 3 -->
+      <a href="https://yara-gimu.github.io/Cyber-Detective-Cybersecurity-Scenario/" target="_blank" class="game-card reveal-up" data-game="cybertrace" style="--delay: 2">
+        <div class="card-glow"></div>
+        <div class="card-icon">
+          <i class="fa-solid fa-user-secret"></i>
+        </div>
+        <div class="card-info">
+          <h3>CyberTrace</h3>
+          <p>Investigate cyber crimes like a detective</p>
+        </div>
+        <div class="card-arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <!-- Game 4 -->
+      <a href="https://danyahba.github.io/The-Countdown-Button/" target="_blank" class="game-card reveal-up" data-game="countdown" style="--delay: 3">
+        <div class="card-glow"></div>
+        <div class="card-icon">
+          <i class="fa-solid fa-stopwatch"></i>
+        </div>
+        <div class="card-info">
+          <h3>Countdown</h3>
+          <p>Race against time — every second counts</p>
+        </div>
+        <div class="card-arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <!-- Game 5 -->
+      <a href="https://medoveiol.github.io/Timeline/" target="_blank" class="game-card reveal-up" data-game="guess-timeline" style="--delay: 4">
+        <div class="card-glow"></div>
+        <div class="card-icon">
+          <i class="fa-solid fa-timeline"></i>
+        </div>
+        <div class="card-info">
+          <h3>Guess The Timeline</h3>
+          <p>Put tech milestones in the right order</p>
+        </div>
+        <div class="card-arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ANALYTICS SECTION -->
+  <section id="analytics" class="section section-analytics">
+    <div class="section-header reveal-up">
+      <span class="section-tag"><i class="fa-solid fa-chart-line"></i> Live Data</span>
+      <h2 class="section-title">Analytics</h2>
+      <div class="typing-wrapper typing-wrapper-sm">
+        <span class="typing-text analyticsText"></span>
+        <span class="typing-cursor">|</span>
+      </div>
+    </div>
+
+    <div class="analytics-cards">
+      <!-- Analytics cards row -->
+      <div class="analytics-card reveal-up" style="--delay: 0">
+        <div class="analytics-card-header">
+          <i class="fa-solid fa-robot"></i>
+          <span>Human VS AI</span>
+        </div>
+        <div class="analytics-box dashboard-box" id="dashboard-human-vs-ai">
+          <div class="dashboard-content">
+            <div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="analytics-card reveal-up" style="--delay: 1">
+        <div class="analytics-card-header">
+          <i class="fa-solid fa-envelope-open-text"></i>
+          <span>Fake OR Real</span>
+        </div>
+        <div class="analytics-box dashboard-box" id="dashboard-fake-or-real">
+          <div class="dashboard-content">
+            <div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="analytics-card reveal-up" style="--delay: 2">
+        <div class="analytics-card-header">
+          <i class="fa-solid fa-user-secret"></i>
+          <span>CyberTrace</span>
+        </div>
+        <div class="analytics-box dashboard-box" id="dashboard-cybertrace">
+          <div class="dashboard-content">
+            <div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="analytics-card reveal-up" style="--delay: 3">
+        <div class="analytics-card-header">
+          <i class="fa-solid fa-stopwatch"></i>
+          <span>Countdown</span>
+        </div>
+        <div class="analytics-box dashboard-box" id="dashboard-countdown">
+          <div class="dashboard-content">
+            <div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="analytics-card reveal-up" style="--delay: 4">
+        <div class="analytics-card-header">
+          <i class="fa-solid fa-timeline"></i>
+          <span>Guess The Timeline</span>
+        </div>
+        <div class="analytics-box dashboard-box" id="dashboard-guess-timeline">
+          <div class="dashboard-content">
+            <div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spline Viewer for 3d robot -->
+  <spline-viewer class="spline-fixed" url="https://prod.spline.design/cEEMPTwlHujoq0JM/scene.splinecode">
+  </spline-viewer>
+
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.51/build/spline-viewer.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>

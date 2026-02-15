@@ -1,0 +1,845 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=VT323&display=swap');
+
+/* ==========================================
+   VARIABLES
+   ========================================== */
+:root {
+  --navy-dark: #080c2b;
+  --navy: #1a2262;
+  --navy-mid: #2e377c;
+  --blue-accent: #49779c;
+  --blue-light: #6b9dc2;
+  --blue-glow: #5a8fb8;
+  --white: #ffffff;
+  --text-primary: #e8ecf4;
+  --text-secondary: #9ba4b8;
+  --text-muted: #6b7490;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(73, 119, 156, 0.3);
+  --radius: 16px;
+  --radius-lg: 24px;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ==========================================
+   RESET & BASE
+   ========================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--navy-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================
+   ANIMATED BACKGROUND
+   ========================================== */
+.bg-grid {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(73, 119, 156, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(73, 119, 156, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-glow-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(26, 34, 98, 0.6), transparent 70%);
+  top: -200px; left: -100px;
+  animation: floatGlow 15s ease-in-out infinite alternate;
+}
+
+.bg-glow-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(73, 119, 156, 0.4), transparent 70%);
+  bottom: -150px; right: -100px;
+  animation: floatGlow 12s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.1); }
+  100% { transform: translate(-20px, -15px) scale(0.95); }
+}
+
+/* ==========================================
+   NAVBAR
+   ========================================== */
+.navbar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(8, 12, 43, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s var(--ease);
+}
+
+.navbar.scrolled {
+  background: rgba(8, 12, 43, 0.92);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+}
+
+.nav-logo {
+  height: 40px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.9;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(73, 119, 156, 0.1);
+  border-color: rgba(73, 119, 156, 0.2);
+}
+
+/* ==========================================
+   HERO
+   ========================================== */
+.hero {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 160px 24px 80px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 100px;
+  background: rgba(73, 119, 156, 0.1);
+  border: 1px solid rgba(73, 119, 156, 0.2);
+  color: var(--blue-light);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 28px;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.hero-badge i {
+  font-size: 14px;
+}
+
+.hero-title {
+  font-size: clamp(48px, 8vw, 80px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  animation: fadeIn 0.8s ease 0.15s both;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--white) 0%, var(--blue-light) 50%, var(--blue-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 520px;
+  margin-bottom: 32px;
+  animation: fadeIn 0.8s ease 0.3s both;
+}
+
+.typing-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-height: 50px;
+  animation: fadeIn 0.8s ease 0.45s both;
+}
+
+.typing-wrapper-sm {
+  padding: 6px 16px;
+  min-height: 36px;
+  margin-top: 12px;
+}
+
+.typing-text {
+  font-family: 'VT323', monospace;
+  font-size: 24px;
+  color: var(--blue-light);
+  letter-spacing: 1px;
+}
+
+.typing-wrapper-sm .typing-text {
+  font-size: 20px;
+}
+
+.typing-cursor {
+  font-family: 'VT323', monospace;
+  font-size: 24px;
+  color: var(--blue-accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   SECTIONS
+   ========================================== */
+.section {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--blue-accent);
+  margin-bottom: 12px;
+}
+
+.section-tag i {
+  font-size: 12px;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ==========================================
+   GAME CARDS
+   ========================================== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.game-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.4s var(--ease);
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.game-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease calc(var(--delay) * 0.1s),
+              transform 0.5s ease calc(var(--delay) * 0.1s),
+              background 0.4s var(--ease),
+              border-color 0.4s var(--ease),
+              box-shadow 0.4s var(--ease);
+}
+
+.card-glow {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(73, 119, 156, 0.08),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.game-card:hover .card-glow {
+  opacity: 1;
+}
+
+.game-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 40px rgba(73, 119, 156, 0.08);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(73, 119, 156, 0.15), rgba(26, 34, 98, 0.2));
+  border: 1px solid rgba(73, 119, 156, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s var(--ease);
+}
+
+.card-icon i {
+  font-size: 22px;
+  color: var(--blue-light);
+  transition: all 0.4s var(--ease);
+}
+
+.game-card:hover .card-icon {
+  background: linear-gradient(135deg, rgba(73, 119, 156, 0.25), rgba(26, 34, 98, 0.3));
+  border-color: rgba(73, 119, 156, 0.3);
+  transform: scale(1.05);
+}
+
+.game-card:hover .card-icon i {
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+.card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.card-info p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.game-card:hover .card-info p {
+  color: var(--text-secondary);
+}
+
+.card-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(73, 119, 156, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s var(--ease);
+}
+
+.card-arrow i {
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: all 0.4s var(--ease);
+}
+
+.game-card:hover .card-arrow {
+  background: rgba(73, 119, 156, 0.15);
+  transform: translateX(4px);
+}
+
+.game-card:hover .card-arrow i {
+  color: var(--blue-light);
+}
+
+.card-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(73, 119, 156, 0.12);
+  border: 1px solid rgba(73, 119, 156, 0.2);
+  color: var(--blue-light);
+}
+
+/* ==========================================
+   ANALYTICS CARDS
+   ========================================== */
+.analytics-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.analytics-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.4s var(--ease);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.analytics-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease calc(var(--delay) * 0.1s),
+              transform 0.5s ease calc(var(--delay) * 0.1s),
+              background 0.4s var(--ease),
+              border-color 0.4s var(--ease),
+              box-shadow 0.4s var(--ease);
+}
+
+.analytics-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 40px rgba(73, 119, 156, 0.06);
+  transform: translateY(-2px);
+}
+
+.analytics-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 18px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.analytics-card-header i {
+  font-size: 14px;
+  color: var(--blue-accent);
+}
+
+.analytics-box {
+  padding: 14px 18px 18px;
+  min-height: 160px;
+}
+
+.dashboard-box {
+  overflow: hidden;
+}
+
+.dashboard-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  min-height: 120px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.loading i {
+  color: var(--blue-accent);
+}
+
+/* ==========================================
+   DASHBOARD INNER STYLES
+   ========================================== */
+.dashboard-header {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.dashboard-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  font-size: 12px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: rgba(73, 119, 156, 0.06);
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.stat-row:hover {
+  background: rgba(73, 119, 156, 0.12);
+}
+
+.stat-label {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  color: var(--blue-light);
+  font-weight: 600;
+}
+
+.dashboard-chart {
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+}
+
+.chart-bar {
+  background: linear-gradient(to top, var(--navy-mid), var(--blue-accent));
+  border-radius: 4px;
+  min-width: 12px;
+  transition: all 0.3s ease;
+}
+
+.chart-bar:hover {
+  background: linear-gradient(to top, var(--blue-accent), var(--blue-light));
+  transform: scaleY(1.15);
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 13px;
+  text-align: center;
+  padding: 8px;
+}
+
+/* ==========================================
+   DONUT CHART
+   ========================================== */
+.donut-chart {
+  width: 90px;
+  height: 90px;
+  margin: 10px auto;
+  position: relative;
+}
+
+.donut-chart svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.donut-segment {
+  fill: none;
+  stroke-width: 10;
+  transition: stroke-width 0.3s ease;
+}
+
+.donut-segment:hover {
+  stroke-width: 13;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.donut-legend {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-color {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ==========================================
+   SPLINE 3D ROBOT
+   ========================================== */
+.spline-fixed {
+  position: fixed;
+  top: 50%;
+  right: -60px;
+  transform: translateY(-50%);
+  width: 280px;
+  height: 280px;
+  z-index: 5;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ==========================================
+   REVEAL ANIMATION UTILITY
+   ========================================== */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.reveal-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   RESPONSIVE — TABLET (< 768px)
+   ========================================== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 130px 20px 60px;
+  }
+
+  .hero-title {
+    font-size: 42px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .typing-text {
+    font-size: 20px;
+  }
+
+  .typing-cursor {
+    font-size: 20px;
+  }
+
+  .section {
+    padding: 40px 16px 60px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .analytics-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .nav-links {
+    gap: 4px;
+  }
+
+  .nav-link {
+    font-size: 16px;
+    padding: 6px 14px;
+  }
+
+  .nav-logo {
+    height: 32px;
+  }
+
+  .spline-fixed {
+    display: none;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — MOBILE (< 500px)
+   ========================================== */
+@media (max-width: 500px) {
+  .hero {
+    padding: 120px 16px 48px;
+  }
+
+  .hero-badge {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+  }
+
+  .typing-wrapper {
+    padding: 8px 16px;
+  }
+
+  .typing-text {
+    font-size: 17px;
+  }
+
+  .typing-cursor {
+    font-size: 17px;
+  }
+
+  .nav-inner {
+    padding: 10px 16px;
+  }
+
+  .nav-logo {
+    height: 28px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .game-card {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .card-icon i {
+    font-size: 18px;
+  }
+
+  .card-info h3 {
+    font-size: 15px;
+  }
+
+  .card-info p {
+    font-size: 12px;
+  }
+
+  .analytics-cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .analytics-box {
+    min-height: 140px;
+  }
+
+  .typing-wrapper-sm {
+    padding: 5px 12px;
+  }
+
+  .typing-wrapper-sm .typing-text {
+    font-size: 16px;
+  }
+}
